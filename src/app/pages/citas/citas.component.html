@@ -1,0 +1,51 @@
+<section id="consultas" >
+  <h2>Consultas</h2>
+
+  <p>
+    Verifica aqui tu cita.
+  </p>
+</section>
+
+
+
+<table mat-table [dataSource]="citas">
+  <ng-container matColumnDef="nombreCliente">
+    <th mat-header-cell *matHeaderCellDef>Nombre del Cliente</th>
+    <td mat-cell *matCellDef="let cita">{{ cita.nombreCliente }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="nombreMascota">
+    <th mat-header-cell *matHeaderCellDef>Nombre de la Mascota</th>
+    <td mat-cell *matCellDef="let cita">{{ cita.nombreMascota }}</td>
+  </ng-container>
+  <ng-container matColumnDef="telefono">
+    <th mat-header-cell *matHeaderCellDef>Telefono</th>
+    <td mat-cell *matCellDef="let cita">{{ cita.telefono }}</td>
+  </ng-container>
+  <ng-container matColumnDef="razonCita">
+    <th mat-header-cell *matHeaderCellDef>Razon</th>
+    <td mat-cell *matCellDef="let cita">{{ cita.razonCita }}</td>
+  </ng-container>
+  <ng-container matColumnDef="fechaCita">
+    <th mat-header-cell *matHeaderCellDef>Fecha</th>
+    <td mat-cell *matCellDef="let cita">{{ cita.fechaCita  }}</td>
+  </ng-container>
+  <ng-container matColumnDef="horaCita">
+    <th mat-header-cell *matHeaderCellDef>Hora</th>
+    <td mat-cell *matCellDef="let cita">{{ cita.horaCita }}</td>
+  </ng-container>
+
+  <!-- Agrega más columnas según sea necesario -->
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    <td mat-cell *matCellDef="let cita">
+      <button mat-icon-button (click)="eliminarCita(cita)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="['nombreCliente', 'nombreMascota', 'telefono', 'razonCita', 'fechaCita', 'horaCita', 'actions']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['nombreCliente', 'nombreMascota', 'telefono', 'razonCita', 'fechaCita', 'horaCita', 'actions'];"></tr>
+</table>

@@ -1,0 +1,19 @@
+<header [ngClass]="{'scrolled-header': scrolled}">
+  <mat-toolbar >
+    <div class="header-title" [routerLink]="['/home']">PulgaCare Pet Clinic</div>
+    <div class="header-menu">
+      <button mat-button [matMenuTriggerFor]="beforeMenu" *ngIf="!estadoLogin?.login" >Registro</button>
+      <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="muestraLoginForm(false)" >Registro nuevo</button>
+        <button mat-menu-item (click)="muestraLoginForm(true)">Iniciar sesión</button>
+      </mat-menu>
+
+      <button mat-button [matMenuTriggerFor]="beforeLogin" *ngIf="this.estadoLogin?.login" matBadge="{{totalCitas}}" matBadgePosition="above after" >Citas</button>
+      <mat-menu #beforeLogin="matMenu" xPosition="before">
+        <button mat-menu-item [routerLink]="['/citas']" >Lista de citas</button>
+        <button mat-menu-item (click)="salir()">Salir</button>
+      </mat-menu>
+      <!--<button mat-button routerLink="/agendar-cita">Agendar cita</button>-->
+    </div>
+  </mat-toolbar>
+</header>

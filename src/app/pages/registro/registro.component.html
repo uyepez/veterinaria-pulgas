@@ -1,0 +1,120 @@
+<section id="registro" *ngIf="!muestraLogin">
+<h2>Reserva una cita para tu mascota</h2>
+
+<p>
+  Reserva ahora una cita con nuestros expertos para garantizar que tu amigo peludo reciba la atención que se merece.
+</p>
+<div class="flex-container">
+
+  <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+    <!--nombre-->
+    <div>
+      <mat-form-field style="width: 100%">
+        <input matInput placeholder="Nombre del cliente" formControlName="nombreCliente">
+      </mat-form-field>
+      <mat-error
+        *ngIf="registroForm.get('nombreCliente')?.invalid && (registroForm.get('nombreCliente')?.dirty || registroForm.get('nombreCliente')?.touched)">
+        Nombre del cliente es requerido.
+      </mat-error>
+    </div>
+
+    <!--telefono-->
+    <div>
+      <mat-form-field style="width: 100%">
+        <input type="number" matInput placeholder="Telefono" formControlName="telefono">
+      </mat-form-field>
+      <mat-error
+        *ngIf="registroForm.get('telefono')?.invalid && (registroForm.get('telefono')?.dirty || registroForm.get('telefono')?.touched)">
+        Telefono es requerido.
+      </mat-error>
+    </div>
+    <!--nombre mascota-->
+    <div>
+      <mat-form-field style="width: 100%">
+        <input matInput placeholder="Nombre de la mascota" formControlName="nombreMascota">
+      </mat-form-field>
+      <mat-error
+        *ngIf="registroForm.get('nombreMascota')?.invalid && (registroForm.get('nombreMascota')?.dirty || registroForm.get('nombreMascota')?.touched)">
+        Nombre del cliente es requerido.
+      </mat-error>
+    </div>
+
+    <!--razon de cita-->
+    <div>
+      <mat-form-field style="width: 100%">
+        <textarea matInput placeholder="Razón de la cita" formControlName="razonCita"></textarea>
+      </mat-form-field>
+      <mat-error
+        *ngIf="registroForm.get('razonCita')?.invalid && (registroForm.get('razonCita')?.dirty || registroForm.get('razonCita')?.touched)">
+        Nombre del cliente es requerido.
+      </mat-error>
+    </div>
+
+    <!--fecha de cita-->
+    <div>
+      <mat-form-field style="width: 100%">
+        <mat-label>Fecha de la cita</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="Fecha de la cita" formControlName="fechaCita">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-error
+        *ngIf="registroForm.get('fechaCita')?.invalid && (registroForm.get('fechaCita')?.dirty || registroForm.get('fechaCita')?.touched)">
+        Nombre del cliente es requerido.
+      </mat-error>
+    </div>
+
+    <!--hora de cita-->
+    <div>
+      <mat-form-field style="width: 100%">
+        <mat-label>Hora de la cita</mat-label>
+        <mat-select placeholder="Hora de la cita" formControlName="horaCita">
+          <mat-option *ngFor="let hour of hours" [value]="hour">{{ hour }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-error
+        *ngIf="registroForm.get('horaCita')?.invalid && (registroForm.get('horaCita')?.dirty || registroForm.get('horaCita')?.touched)">
+        Nombre del cliente es requerido.
+      </mat-error>
+    </div>
+
+
+
+
+    <button mat-raised-button  type="submit" [disabled]="!this.registroForm.valid">Registrarse</button>
+  </form>
+
+</div>
+</section>
+
+
+<section id="login" *ngIf="muestraLogin">
+<h2>Login</h2>
+
+<p>
+  Si ya tienes una cuenta, has login con tu numero telefonico.
+</p>
+
+<div class="flex-container">
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+
+    <!--telefono-->
+    <div>
+      <mat-form-field style="width: 100%">
+        <input type="number" matInput placeholder="Telefono" formControlName="telefono">
+      </mat-form-field>
+      <mat-error
+        *ngIf="loginForm.get('telefono')?.invalid && (loginForm.get('telefono')?.dirty || loginForm.get('telefono')?.touched)">
+        Telefono es requerido.
+      </mat-error>
+    </div>
+
+    <button mat-raised-button  type="submit" [disabled]="!this.loginForm.valid">Login</button>
+
+    <p>{{ error }}</p>
+  </form>
+
+</div>
+</section>
+
